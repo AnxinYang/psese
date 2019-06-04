@@ -36,7 +36,7 @@ const app = {
     initClusters: function (config) {
         return new Promise(function (resolve, reject) {
             let maxCore = config.maxCluster || os.cpus().length;
-            for(var i=0; i<maxCore; i++){
+            for(let i=0; i<maxCore; i++){
                 cluster.fork();
             }
             resolve(config);
