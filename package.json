@@ -1,0 +1,20 @@
+{
+  "name": "psese",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnxinYang/psese.git"
+  },
+  "author": "Anxin Yang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnxinYang/psese/issues"
+  },
+  "homepage": "https://github.com/AnxinYang/psese#readme"
+}
