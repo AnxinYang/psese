@@ -10,32 +10,30 @@ const routines = require('./lib/routines');
 const app = {
     init: function (config = {}) {
         return new Promise(function (resolve, reject) {
-            if(config.cluster){
+            config.cluster === true ?
                 app.initCluster(config)
-                    .then(resolve);
-            }else {
+                    .then(resolve)
+                :
                 server.init(config)
                     .then(routines.init)
                     .then(resolve);
-            }
         })
 
     },
     initCluster: function (config) {
         return new Promise(function (resolve, reject) {
-            if (cluster.isMaster) {
+            (cluster.isMaster ?
                 routines.init(config)
-                    .then(app.initFork)
+                    .then(app.initClusters)
                     .then(function () {
                         console.log('Master is Running...')
-                    });
-            } else {
-                server.init(config);
-            }
-            resolve(config);
+                    })
+                :
+                server.init(config))
+                .then(resolve);
         })
     },
-    initFork: function (config) {
+    initClusters: function (config) {
         return new Promise(function (resolve, reject) {
             let maxCore = config.maxCluster || os.cpus().length;
             for(var i=0; i<maxCore; i++){
